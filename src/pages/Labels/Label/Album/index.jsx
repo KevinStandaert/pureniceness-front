@@ -59,9 +59,9 @@ function Album({ oneAlbumSongs, setOneAlbumSongs }) {
                 <div className="track-name">
                   {track.name}
                 </div>
-                <div className="track-artist">
-                  {/* {track.artists?.map((artist) => artist.firstname).join(', ')} */}
-                </div>
+                {/* <div className="track-artist">
+                  {track.artists?.map((artist) => artist.firstname).join(', ')}
+                </div> */}
               </div>
 
               <div className="track-duration">

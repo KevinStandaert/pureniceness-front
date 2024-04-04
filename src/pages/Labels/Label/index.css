@@ -14,6 +14,8 @@
   font-weight: lighter;
   font-size: 1.2rem;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0.3rem;
 }
   .label-albums {
@@ -25,8 +27,7 @@
   border-radius: 0.8rem;
   margin: 0.5rem 0;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 0.2rem;
+  padding: 1.1rem 0.2rem 0.2rem 0.2rem;
 }
 
 .list__album-container {
@@ -56,7 +57,7 @@
 .track-cover-container {
   min-width: calc(3rem + 2px);
   height: calc(3rem + 2px);
-  border: solid 1px white;
+  border: solid 0.7px white;
   border-radius: 10px;
   padding: 0;
 }
@@ -135,6 +136,10 @@
   color:var(--secondary-color) !important;
 }
 
+.label-albums::-webkit-scrollbar {
+  width: 0px;
+}
+
 @media screen and (min-width: 769px) {
   .label-container {
     flex-direction: row;
@@ -144,7 +149,7 @@
     flex-direction: column;
     max-width: 12rem;
     width: 12rem;
-    padding: 0.2rem 0.4rem 0.2rem 0.2rem;
+    padding: 0.2rem 0.9rem 0.2rem 0.2rem;
     margin-right: 0.5rem;
     height: calc(100vh - 2 * var(--navbar-height));
     max-height: calc(100vh - 2 * var(--navbar-height));
@@ -159,10 +164,6 @@
   .list__album-image {
     width: 6rem;
     height: 6rem;
-  }
-
-  .label-albums::-webkit-scrollbar {
-    width: 5px;
   }
 
   .label-albums::-webkit-scrollbar-track {

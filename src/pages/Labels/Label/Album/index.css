@@ -59,10 +59,6 @@
 .track-fav svg:hover {
   cursor: pointer;
 }
-/* 
-.track-duration {
-  display: none;
-} */
 
 .track-container svg {
   margin-left: auto;
@@ -77,6 +73,19 @@
   width: 100%;
   overflow-x: hidden;
   text-overflow: ellipsis;
+}
+
+.track-name:hover {
+  text-overflow: inherit;
+  animation: scrollAnimation 5s linear infinite;
+}
+@keyframes scrollAnimation {
+  0% {
+    text-indent: 0;
+  }
+  100% {
+    text-indent: -100%;
+  }
 }
 
 .track-infos {
@@ -110,5 +119,9 @@
   }
   .album-container{
     margin-top: 0.5rem;
+  }
+  .track-container {
+   gap: 1.3rem;
+   padding:0.6rem 1.3rem;
   }
 }

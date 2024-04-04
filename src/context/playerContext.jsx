@@ -80,7 +80,11 @@ function PlayerProvider({ children }) {
           src={trackData}
           className="audio-player"
           autoPlay
+          showSkipControls={true}
+          showJumpControls={false}
           onEnded={() => { handleClickPlay(nextTrackId); }}
+          onClickNext={() => { handleClickPlay(nextTrackId); }}
+          onClickPrevious={() => { handleClickPlay(nextTrackId); }}
         />
 
         <div className="close-player">
