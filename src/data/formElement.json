@@ -46,6 +46,7 @@
       "id": "year",
       "label": "Année",
       "type": "number",
+      "placeholder": "Année",
       "min": 1900,
       "max": 2100,
       "step": 1,
@@ -77,14 +78,16 @@
       "label": "Description",
       "type": "textarea",
       "placeholder": "Description",
-      "required": true
+      "required": true,
+      "className":"textarea-container"
     },
     "url_image": {
       "id": "url_image",
       "label": "Image",
       "type": "file",
       "accept": "image/*",
-      "required": true
+      "required": true,
+      "className":"input-file-container"
     },
     "label_id": {
       "id": "label_id",
@@ -183,7 +186,8 @@
       "label": "Son",
       "type": "file",
       "accept": "audio/*",
-      "required": true
+      "required": true,
+      "className":"input-file-container"
     }
   }
 }

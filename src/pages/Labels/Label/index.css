@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .label-name {
@@ -13,23 +15,21 @@
   font-size: 1.2rem;
   width: 100%;
   padding: 0.3rem;
-  margin-bottom: 0.4rem;
 }
-
-.label-albums {
+  .label-albums {
   display: flex;
   flex-direction: row;
   width: 100%;
   overflow-x: scroll;
   border: solid 2px var(--secondary-color);
-  border-radius:0.8rem;
+  border-radius: 0.8rem;
   margin: 0.5rem 0;
   font-weight: 600;
   font-size: 1rem;
-  padding:0.2rem;
+  padding: 0.2rem;
 }
 
-.button-album-container {
+.list__album-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -39,38 +39,55 @@
   gap: 0.5rem;
   border: solid 1px black;
   max-width: 6rem;
+  min-width: 6rem;
 }
 
-.button-album__image {
-  width: 4rem;
-  height: 4rem;
+.list__album-image {
+  width: 5rem;
+  height: 5rem;
+}
+
+.list__album-name {
+  max-height: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .track-cover-container {
-  min-width: calc(4rem + 2px);
-  height: calc(4rem + 2px);
+  min-width: calc(3rem + 2px);
+  height: calc(3rem + 2px);
   border: solid 1px white;
-  padding:0;
+  border-radius: 10px;
+  padding: 0;
 }
 
 .player-container {
   position: fixed;
-  bottom: 6rem;
+  bottom: 8.9rem;
   left: 0;
   width: 100%;
   height: 2rem;
+  border-top:solid 2px var(--secondary-color);
+  z-index:100;
 }
 
 .rhap_time {
-  color: black !important;
+  color:var(--secondary-color) !important;
 }
 
 .rhap_container {
-  background-color: rgb(81, 81, 79) !important;
+  background-color: rgb(0, 0, 0) !important;
+  opacity: 0.8 !important;
 }
 
 .rhap_container button {
   color: var(--secondary-color) !important;
+}
+
+.rhap_controls-section {
+  margin-top: 2px !important;
+  width:100%;
+  padding:0.5rem 0;
 }
 
 .rhap_progress-filled {
@@ -85,20 +102,63 @@
 .rhap_volume-bar::-webkit-slider-runnable-track {
   background-color: var(--secondary-color) !important;
 }
+.rhap_progress-section {
+  width: 100%;
+  margin: 1.7rem auto;
+  margin-bottom:0;
+}
 
-@media screen and (min-width: 426px) {
+.icon-close-player {
+  position: absolute;
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  top: 0.4rem;
+  left: 1rem;
+}
+
+.icon-reduce-player {
+  position: absolute;
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  top: 0.4rem;
+  right: 1rem;
+  transform: rotate(90deg);
+}
+
+.audio-player__track-name {
+  position: absolute;
+  color: black;
+  font-size: 1.2rem;
+  top: 0.6rem;
+  left: 3rem;
+  width:calc(100% - 6rem);
+  color:var(--secondary-color) !important;
+}
+
+@media screen and (min-width: 769px) {
   .label-container {
     flex-direction: row;
   }
 
   .label-albums {
     flex-direction: column;
-    max-width: 7rem;
+    max-width: 12rem;
+    width: 12rem;
+    padding: 0.2rem 0.4rem 0.2rem 0.2rem;
     margin-right: 0.5rem;
     height: calc(100vh - 2 * var(--navbar-height));
     max-height: calc(100vh - 2 * var(--navbar-height));
     overflow-y: scroll;
     overflow-x: initial;
+  }
+
+  .list__album-container {
+    min-width: 100%;
+  }
+
+  .list__album-image {
+    width: 6rem;
+    height: 6rem;
   }
 
   .label-albums::-webkit-scrollbar {
@@ -109,7 +169,7 @@
     background: transparent;
   }
 
-  .button-album-container::-webkit-scrollbar-thumb {
+  .list__album-container::-webkit-scrollbar-thumb {
     background: var(--secondary-color);
     border-radius: 10px;
   }
@@ -117,8 +177,10 @@
   .album {
     margin: 0.2rem;
   }
+}
 
+@media screen and (min-width: 426px) {
   .player-container {
-    bottom: 3rem;
+    bottom: 5.5rem;
   }
 }

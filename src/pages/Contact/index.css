@@ -1,10 +1,23 @@
 .form_containeur {
-  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 5px solid #9e8a58;
   border-radius: 20px;
   background-color: #313131;
+  max-width: 1440px;
+}
+
+.form__signup-container {
+  margin: 0 auto;
+  padding: 20px;
+  border: 5px solid #9e8a58;
+  border-radius: 20px;
+  background-color: #313131;
+  max-width: 400px;
+}
+
+.form__signup-container input{
+  text-align:center;
 }
 
 .label_name {
@@ -20,12 +33,13 @@
   font-weight: bold;
   font-size: 1.2rem;
   color: #af8928;
-  margin: 1rem 0 1.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .contact_input,
 .contact_text-area {
   width: 100%;
+  max-width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -40,10 +54,29 @@
   background-color: #9e8a58;
   color: #fff;
   padding: 10px 20px;
+  margin-top:1rem;
   border-radius: 8px;
   width: 100%;
+  max-width: 400px;
 }
 
 .submit_contact_button:hover {
   background-color: #af8928;
+}
+
+@media screen and (min-width: 426px) {
+  .form__signup-container {
+    max-width: 800px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:0 1rem;
+    padding:0.7rem;
+  }
+  
+  .form__signup-container .form_div{
+    flex-basis: calc(50% - 10px);
+    margin:0;
+  }
 }

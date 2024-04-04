@@ -9,7 +9,6 @@ import { useLoaderData } from 'react-router-dom';
 import fetchData from '../../services/api/call.api';
 import LabelsDetails from './LabelsDetails';
 
-// RMQ: si loader a un temps de chargement trop long, utiliser useNavigation
 export const homeDataLoader = async () => {
   // Fetching labels data from the API
   const labelsData = await fetchData('GET', 'labels');

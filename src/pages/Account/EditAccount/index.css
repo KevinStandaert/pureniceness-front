@@ -14,7 +14,7 @@
   align-items: center;
   margin: 0.5rem;
   width: 100%;
-  max-width: 450px;
+  max-width: 600px;
 }
 
 .form-group{
@@ -27,5 +27,5 @@
 .edit-button{
   background-color: rgb(96, 96,96);
   border-radius: 1rem;
-  margin-top: 0.5rem;
+  margin: 0.5rem 20% 0 20%;
 }

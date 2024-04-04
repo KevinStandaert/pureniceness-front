@@ -15,11 +15,12 @@
 .container th {
   text-align: center;
   width: fit-content;
-  height: 100%;
   vertical-align: middle;
   max-width: 9rem;
+  max-height: 9rem !important;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .container tr {

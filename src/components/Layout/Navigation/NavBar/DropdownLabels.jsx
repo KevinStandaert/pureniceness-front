@@ -7,15 +7,12 @@ function DropdownLabel() {
   const [labels, setLabels] = useState([]);
   const fetchLabels = async () => {
     const labelsData = await fetchData('GET', 'labels');
-    const labelName = labelsData.map((label) => label.name);
-    const labelLinks = [
-    // { id: 1, path: '/labels/1', label: labelName[0] },
-      { id: 2, path: '/labels/2', label: labelName[1] },
-      { id: 3, path: '/labels/3', label: labelName[2] },
-      // lien vers toutes les musiques: page non fonctionnelle
-      // { id: 4, path: '/labels', label: 'all Records' },
-
-    ];
+    const labelLinks = [];
+    labelsData.map((label) => {
+      if (label.name !== 'King Hi-Fi Sound System') {
+        labelLinks.push({ id: label.id, path: `/labels/${label.id}`, label: label.name })
+      }
+    });
     setLabels(labelLinks);
   };
 

@@ -1,26 +1,37 @@
-.return-icon{
+.return-icon {
   display: flex;
   padding-left: 1.5rem;
   justify-content: flex-start;
 }
 
-.profil-container{
+.profil-container {
   width: 100%;
   border-radius: 1.5rem;
-  background-color: rgb(96, 96, 96);
+  background-color: black;
+  padding: 1rem;
+  color: #9e8a58;
+  font-weight: bold;
 }
 
-#h1-profil{
-  margin: 0;
+.profil-container span{
+  display: none;
 }
 
-.icon-gretter-size{
+.h1-profil {
+  margin-top: -2rem;
   font-size: 1.5rem;
 }
 
-.profil-icons a{
-  margin-right: 10px;
+.icon-gretter-size {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  color: #9e8a58;
 }
+
+.profil-icons a {
+  padding: 0 1.5rem;
+}
+
 .tracks-list {
   padding: 0 3rem;
 }
@@ -29,15 +40,42 @@
   padding-bottom: 0.5rem;
 }
 
-.delete-account{
+.delete-account {
   display: inline-block;
   justify-content: center;
 }
 
-#favorites {
+.favorite-title{
+  margin-top: 1rem;
   border-top: 1px solid rgb(96, 96, 96);
-  margin-top: .5rem;
-  padding-top: 0.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
 }
+
+#favorites {
+  padding-top: 0.2rem;
+  font-size: 1.3rem;
+}
+
+.edit-button-container{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.edit-profil-button{
+  width:fit-content;
+}
+
+.edit-profil-button .icon-gretter-size{
+  margin-right: 0;
+}
+
+@media screen and (min-width: 426px) {
+  .profil-container span{
+    display:initial;
+  }
+}
+

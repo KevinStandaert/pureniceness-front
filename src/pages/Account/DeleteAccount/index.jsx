@@ -9,7 +9,7 @@ import DeleteModal from '../../../components/Common/Modal/Delete';
 function DeleteAccount({ userId }) {
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
-  // if no userId or userId = main administrator, don't show the delete-account div
+  // if no userId or userId = main administrator, don't show the delete account modal
   if ((!userId) || parseInt(userId, 10) === 1) {
     return null;
   }
@@ -20,6 +20,7 @@ function DeleteAccount({ userId }) {
   const deleteElement = async () => {
     const isDelete = await fetchData('DELETE', `users/${userId}`, null, true);
     localStorage.removeItem('authApiToken');
+
     // hard refresh to update the user context
     window.location.href = '/';
     return isDelete;
@@ -47,12 +48,11 @@ function DeleteAccount({ userId }) {
     }
   };
 
-  DeleteModal(text, handleCloseDeleteModal, handleConfirmDelete);
-
   return (
     <>
       <div
-        tabIndex={0} // Rend l'élément focusable
+      // Rend l'élément focusable
+        tabIndex={0}
         onClick={handleOpenDeleteModal}
         onKeyDown={handleKeyDown}
         role="button"
@@ -68,6 +68,7 @@ function DeleteAccount({ userId }) {
         <DeleteModal
           handleClose={handleCloseDeleteModal}
           handleConfirm={handleConfirmDelete}
+          mode="delete-user"
         />
       )}
     </>

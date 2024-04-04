@@ -15,7 +15,7 @@ function ContactForm() {
   }
 
   const [formData, setFormData] = useState({
-    from: email,
+    from: '',
     subject: '',
     company: '',
     message: '',

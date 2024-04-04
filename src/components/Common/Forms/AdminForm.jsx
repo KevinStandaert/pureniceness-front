@@ -59,6 +59,9 @@ function AdminForm({
       ...formData,
       [id]: event.target.files[0],
     });
+    if (event.target.name === 'url_image') {
+      document.querySelector('.image-preview').src = URL.createObjectURL(event.target.files[0]);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -76,9 +79,11 @@ function AdminForm({
       if (resultData) {
         if (modalMode === 'create') {
           handleDataCreate(resultData[0]);
+          toast.success('Création réussie.');
         }
         if (modalMode === 'update') {
           handleDataUpdate(resultData[0]);
+          toast.success('Modification réussie.');
         }
         setFormKey((prevKey) => prevKey + 1);
         setItemSelected(null);

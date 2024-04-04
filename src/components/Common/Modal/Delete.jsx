@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import './modal.css';
 
-function DeleteModal({ text, handleClose, handleConfirm }) {
+function DeleteModal({
+  text, handleClose, handleConfirm, mode,
+}) {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleModalClick = (event) => {
@@ -13,7 +15,7 @@ function DeleteModal({ text, handleClose, handleConfirm }) {
 
   return isVisible ? (
     <div className="modal" aria-label="Close modal" onClick={handleModalClick}>
-      <div className="modal-content modal-style-delete">
+      <div className={`modal-content modal-style-${mode}`}>
         <button
           type="button"
           className="close close-modal-btn"
@@ -40,6 +42,7 @@ function DeleteModal({ text, handleClose, handleConfirm }) {
               className="is-success"
               onClick={handleConfirm}
               value="Confirmer"
+              aria-label="Confirm delete"
             >
               Confirmer
             </button>

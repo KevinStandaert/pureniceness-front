@@ -54,6 +54,9 @@ function AdminTemplate({
   };
 
   const handleOpenCreateModal = () => {
+    optionsList.forEach((option) => {
+      delete option.src;
+    });
     setModalTitle('AJOUTER');
     setModalMode('create');
     setIsModalVisible(true);
@@ -67,6 +70,9 @@ function AdminTemplate({
           optionForUpdate[index].defaultValue = item[key];
         }
         if (objetOptions.type === 'file' || objetOptions.type === 'password') {
+          if (objetOptions.id === 'url_image') {
+            optionForUpdate[index].src = item.url_image;
+          }
           delete optionForUpdate[index].required;
         }
       });
@@ -77,6 +83,7 @@ function AdminTemplate({
     setModalMode('update');
     setIsModalVisible(true);
   };
+
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };

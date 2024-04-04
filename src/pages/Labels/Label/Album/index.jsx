@@ -1,33 +1,19 @@
 /* eslint-disable react/prop-types */
 import './index.css';
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
-import AudioPlayer from 'react-h5-audio-player';
+import { toast } from 'react-toastify';
+import { PlayerContext } from '../../../../context/playerContext';
 import fetchData from '../../../../services/api/call.api';
-import 'react-h5-audio-player/lib/styles.css';
 
-function Album({ oneAlbumSongs, setOneAlbumSongs, albumId }) {
-  const [trackData, setTrackData] = useState(null);
-  const handleClickPlay = async (track) => {
-    const apiUrl = import.meta.env.VITE_API_URL;
-    try {
-      const fecthSoundData = await fetch(`${apiUrl}/tracks/${track.id}/audio`);
-      if (!fecthSoundData.ok) {
-        toast.error('Erreur lors du chargement de la musique');
-        throw new Error('Erreur lors du chargement de la musique');
-      }
-      const audioBlob = await fecthSoundData.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      setTrackData(audioUrl);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+function Album({ oneAlbumSongs, setOneAlbumSongs }) {
+  const { handleClickPlay } = useContext(PlayerContext);
+
   const handleClickAddLikes = async (track) => {
     const likeWithSuccess = await fetchData('GET', `tracks/${track.id}/likes`, null, true);
+
     if (likeWithSuccess) {
       setOneAlbumSongs((prevData) => prevData?.map((album) => ({
         ...album,
@@ -36,6 +22,11 @@ function Album({ oneAlbumSongs, setOneAlbumSongs, albumId }) {
           liked: item.id === track.id ? !track.liked : item.liked,
         })),
       })));
+      if (!track.liked) {
+        toast.success('Ajout aux favoris réussi.');
+      } else {
+        toast.success('Retrait aux favoris réussi.');
+      }
     }
   };
 
@@ -46,58 +37,51 @@ function Album({ oneAlbumSongs, setOneAlbumSongs, albumId }) {
   };
 
   return (
-    <>
-      <div className="album-container">
-        <h1 className="album-container__title">
-          {oneAlbumSongs[0]?.name}
-        </h1>
-        {oneAlbumSongs.length && oneAlbumSongs[0].tracks.length
+    <div className="album-container">
+      <h1 className="album-container__title">
+        {oneAlbumSongs[0]?.name}
+      </h1>
+      {oneAlbumSongs.length && oneAlbumSongs[0].tracks.length
         // true: map over the tracks array of the first album
-          ? (
-            oneAlbumSongs[0].tracks.map((track) => (
-              <div className="track-container" key={track.id}>
-                <div className="track-cover-container">
-                  <img className="track-cover" src={track.url_image} alt={track.name} />
-                </div>
-                <div className="track-play">
-                  <FontAwesomeIcon
-                    icon={faPlay}
-                    className="play-icon"
-                    onClick={() => handleClickPlay(track)}
-                  />
-                </div>
+        ? (
+          oneAlbumSongs[0].tracks.map((track, index) => (
+            <div className="track-container" key={track.id}>
+              <img className="track-cover-container" src={track.url_image} alt={track.name} />
+              <div className="track-play">
+                <FontAwesomeIcon
+                  icon={faPlay}
+                  className="play-icon"
+                  onClick={() => { handleClickPlay(track, index); }}
+                />
+              </div>
+
+              <div className="track-infos">
                 <div className="track-name">
                   {track.name}
                 </div>
-                <div className="track-duration">
-                  {formatDuration(track.duration)}
-                </div>
-                <div className="track-fav">
-                  <FontAwesomeIcon
-                    icon={track.liked ? solidStar : regularStar}
-                    onClick={() => {
-                      handleClickAddLikes(track);
-                    }}
-                    className="likes-icon"
-                  />
+                <div className="track-artist">
+                  {/* {track.artists?.map((artist) => artist.firstname).join(', ')} */}
                 </div>
               </div>
-            ))
-          )
+
+              <div className="track-duration">
+                {formatDuration(track.duration)}
+              </div>
+              <div className="track-fav">
+                <FontAwesomeIcon
+                  icon={track.liked ? solidStar : regularStar}
+                  onClick={() => {
+                    handleClickAddLikes(track);
+                  }}
+                  className="likes-icon"
+                />
+              </div>
+            </div>
+          ))
+        )
         // false: tell this at the user.
-          : ('Aucun sons dans cet album')}
-      </div>
-      {trackData && (
-      <div className="player-container">
-        <AudioPlayer
-          preload="metadata"
-          src={trackData}
-          className="audio-player"
-          autoPlay
-        />
-      </div>
-      )}
-    </>
+        : (<span className="no-tracks">Aucun son dans cet album</span>)}
+    </div>
   );
 }
 export default Album;

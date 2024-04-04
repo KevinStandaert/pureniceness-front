@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-// functional componenttakes a prop labelsDetails
+// functional component takes a prop labelsDetails
 function LabelsDetails({ labelsDetails }) {
   // Filtering the labelsDetails array to get crews ('King Hi-Fi Sound System')
   const crews = labelsDetails.filter((label) => label.name === 'King Hi-Fi Sound System');

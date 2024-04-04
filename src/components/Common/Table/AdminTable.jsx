@@ -2,11 +2,15 @@
 
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan, faPen, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTrashCan, faPen, faPeopleGroup, faCompactDisc, faMusic,
+} from '@fortawesome/free-solid-svg-icons';
 import styles from './AdminTable.module.css';
 import DeleteModal from '../Modal/Delete';
 import fetchData from '../../../services/api/call.api';
 import AddModal from '../Modal/Add';
+import AlbumModal from '../Modal/AlbumModal';
+import TrackModal from '../Modal/TrackModal';
 
 function AdminTable({
   filteredDatas, handleDataDelete, handleOpenUpdateModal, route,
@@ -14,6 +18,8 @@ function AdminTable({
   const [selectedRow, setSelectedRow] = useState(null);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
+  const [albumModalVisible, setAlbumModalVisible] = useState(false);
+  const [trackModalVisible, setTrackModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const deleteElement = async () => {
@@ -32,6 +38,24 @@ function AdminTable({
 
   const handleCloseAddModal = () => {
     setIsAddModalVisible(false);
+    setSelectedItem(null);
+  };
+
+  const handleOpenAlbumModal = (item) => {
+    setAlbumModalVisible(true);
+    setSelectedItem(item);
+  };
+  const handleCloseAlbumModal = () => {
+    setAlbumModalVisible(false);
+    setSelectedItem(null);
+  };
+
+  const handleOpenTrackModal = (item) => {
+    setTrackModalVisible(true);
+    setSelectedItem(item);
+  };
+  const handleCloseTrackModal = () => {
+    setTrackModalVisible(false);
     setSelectedItem(null);
   };
 
@@ -70,6 +94,16 @@ function AdminTable({
                     Artistes
                   </th>
                 ) : null}
+                {route === 'admin/labels' ? (
+                  <th className="has-text-centered has-text-white">
+                    Albums
+                  </th>
+                ) : null}
+                {route === 'admin/albums' ? (
+                  <th className="has-text-centered has-text-white">
+                    Sons
+                  </th>
+                ) : null}
                 <th className="has-text-centered has-text-white">Modifier</th>
                 <th className="has-text-centered has-text-white">Supprimer</th>
               </tr>
@@ -97,6 +131,33 @@ function AdminTable({
                       </button>
                     </td>
                   ) : null}
+
+                  {route === 'admin/labels' ? (
+                    <td>
+                      <button
+                        className="is-danger"
+                        type="button"
+                        onClick={() => handleOpenAlbumModal(data)}
+                        aria-label="add"
+                      >
+                        <FontAwesomeIcon icon={faCompactDisc} />
+                      </button>
+                    </td>
+                  ) : null}
+
+                  {route === 'admin/albums' ? (
+                    <td>
+                      <button
+                        className="is-danger"
+                        type="button"
+                        onClick={() => handleOpenTrackModal(data)}
+                        aria-label="add"
+                      >
+                        <FontAwesomeIcon icon={faMusic} />
+                      </button>
+                    </td>
+                  ) : null}
+
                   <td>
 
                     <button
@@ -128,12 +189,27 @@ function AdminTable({
           handleClose={handleCloseDeleteModal}
           handleConfirm={handleConfirmDelete}
           item={selectedItem}
+          mode="delete"
         />
         )}
         {isAddModalVisible
         && (
         <AddModal
           handleClose={handleCloseAddModal}
+          item={selectedItem}
+        />
+        )}
+        {albumModalVisible
+        && (
+        <AlbumModal
+          handleClose={handleCloseAlbumModal}
+          item={selectedItem}
+        />
+        )}
+        {trackModalVisible
+        && (
+        <TrackModal
+          handleClose={handleCloseTrackModal}
           item={selectedItem}
         />
         )}

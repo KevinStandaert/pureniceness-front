@@ -27,6 +27,7 @@ function Input({
     autoComplete,
     multiple,
     accept,
+    src,
   } = options;
 
   const inputProps = {
@@ -73,7 +74,10 @@ function Input({
       </select>
       )}
       {type !== 'textarea' && type !== 'select' && (
-      <input type={type} id={id} {...inputProps} />
+      <>
+        <input type={type} id={id} {...inputProps} />
+        {type === 'file' && id === 'url_image' && <img className="image-preview" src={src} alt="Preview" />}
+      </>
       )}
       {errorMessage && <div id={`${id}-help`} className="form-text text-danger">{errorMessage}</div>}
     </div>

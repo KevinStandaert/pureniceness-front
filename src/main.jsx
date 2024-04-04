@@ -6,12 +6,15 @@ import { RouterProvider } from 'react-router-dom';
 
 import router from './router/index';
 import UserProvider from './context/userContext';
+import PlayerProvider from './context/playerContext';
 
 // RouterProvider permet à react-router-dom de checker les routes de notre application
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
+    <PlayerProvider>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </PlayerProvider>
   </React.StrictMode>,
 );

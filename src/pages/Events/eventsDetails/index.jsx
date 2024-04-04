@@ -10,8 +10,8 @@ function EventsDetails({ eventsDetails }) {
       </h1>
 
       {
-
-            events.map((event, index) => (
+            events.length
+            ? (events.map((event, index) => (
               <div className={index % 2 === 0 ? 'event_container' : 'event_container is_active'} key={event.id}>
                 <div className="img_container">
                   <img className="event_image" src={event.url_image} alt={event.name} />
@@ -52,8 +52,10 @@ function EventsDetails({ eventsDetails }) {
                     {event.location}
                   </p>
                 </div>
-              </div>
-            ))
+                
+              </div>)
+              ))
+              : ('Aucun évènement à venir')
         }
 
     </>

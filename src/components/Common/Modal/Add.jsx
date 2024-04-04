@@ -102,6 +102,7 @@ function AddModal({
       const artistAdded = await fetchData('POST', `admin/tracks/${item.id}/artists`, formData, true);
       if (artistAdded) {
         mooveArtist(artistAdded, artistsOfTrack, optionsSelect.options);
+        toast.success('Artiste ajouté.');
         handleHideForm();
       }
     } else {

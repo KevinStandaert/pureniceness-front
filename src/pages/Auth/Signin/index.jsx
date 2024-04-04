@@ -11,8 +11,8 @@ import checkAdminRole from '../../../services/auth/checkAdmin';
 import checkConnected from '../../../services/auth/checkConnected';
 
 function Account() {
-  const [email, setEmail] = useState('ap@ap.fr');
-  const [password, setPassword] = useState('12341234');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { isAdmin, setIsAdmin } = useContext(UserContext);
   const { isConnected, setIsConnected } = useContext(UserContext);
   const navigate = useNavigate();

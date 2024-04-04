@@ -47,7 +47,7 @@ function Singup() {
       if (response === null || response.error) {
         throw new Error('Une erreur s\'est produite !');
       }
-      toast.success('Inscription réussi !');
+      toast.success('Inscription réussie !');
       setFormUserData({ ...initialFormUserData });
 
       setTimeout(() => {
@@ -63,7 +63,7 @@ function Singup() {
       <h1 className="contact-h1">
         Inscription
       </h1>
-      <form className="form_containeur" onSubmit={handleSubmit}>
+      <form className="form__signup-container" onSubmit={handleSubmit}>
 
         <div className="form_div">
           <label className="form_label" htmlFor="email">
@@ -130,7 +130,7 @@ function Singup() {
 
         <div className="form_div">
           <label className="form_label" htmlFor="passwordConfirm">
-            <p className="label_name">Confirmez votre mot de passe</p>
+            <p className="label_name">Confirmation</p>
             <input className="contact_input" type="password" id="passwordConfirm" name="passwordConfirm" value={formUserData.passwordConfirm} onChange={handleChange} />
           </label>
         </div>

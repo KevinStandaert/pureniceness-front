@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 function Artist({
-  artist, index, handleDeleteArtist, handleDrop,
+  artist, handleDeleteArtist,
 }) {
   return (
     <div
