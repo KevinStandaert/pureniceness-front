@@ -31,6 +31,7 @@ import ErrorPage from '../pages/error';
 // Création du routeur
 const router = createBrowserRouter([
   {
+    basename: '/',
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,

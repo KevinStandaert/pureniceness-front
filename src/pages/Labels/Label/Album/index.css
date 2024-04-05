@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   justify-content:center;
-  width: 80%;
+  width: 95%;
   padding: 0.6rem;
   gap: 0.5rem;
   border: 1px white solid;
@@ -73,6 +73,14 @@
   width: 100%;
   overflow-x: hidden;
   text-overflow: ellipsis;
+}
+
+.track-duration {
+  font-size: 0.7rem;
+}
+
+.track-name::-webkit-scrollbar {
+  width: 0px;
 }
 
 .track-name:hover {
@@ -123,5 +131,6 @@
   .track-container {
    gap: 1.3rem;
    padding:0.6rem 1.3rem;
+   width:80%;
   }
 }

@@ -39,11 +39,17 @@ function Favorites({ userId }) {
     fetchLikesData(userId);
   }, []);
 
+  const formatDuration = (durationInSeconds) => {
+    const minutes = Math.floor(durationInSeconds / 60);
+    const seconds = durationInSeconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  };
+
   return (
 
     <div className="tracks-containeur__favorites">
       {likesDetails && likesDetails.map((track, index) => (
-        <div className="tracks-list" key={track.name}>
+        
           <div className="track-container" key={track.id}>
             <img className="track-cover-container" src={track.url_image} alt={track.name} />
             <div className="track-play">
@@ -58,14 +64,16 @@ function Favorites({ userId }) {
               <div className="track-name">
                 {track.name}
               </div>
-              <div className="track-year">
-                {track.year}
-              </div>
-              <FontAwesomeIcon className="trash-can" icon={faTrashCan} onClick={() => deleteLike(track.id)} />
             </div>
 
+            <div className="track-duration">
+              {formatDuration(track.duration)}
+            </div>
+
+            <FontAwesomeIcon className="trash-can" icon={faTrashCan} onClick={() => deleteLike(track.id)} />
+
           </div>
-        </div>
+        
       ))}
     </div>
 
